@@ -29,6 +29,9 @@ public class Transaction {
     @Column(name = "transaction_type",nullable = false)
     private TransactionType transactionType;
 
+    @Column(name="references",nullable = false)
+    private String references ;
+
     @Column(name = "status_transaction", nullable = false)
     private Boolean status;
 }
