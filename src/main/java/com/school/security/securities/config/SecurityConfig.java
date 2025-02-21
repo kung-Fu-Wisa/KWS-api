@@ -1,9 +1,9 @@
 package com.school.security.securities.config;
+
 import com.school.security.services.contracts.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -26,7 +26,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private  final UserService userService;
+    private final UserService userService;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Bean
@@ -35,9 +35,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/users").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/funds/{id}").permitAll()
-                        .requestMatchers(HttpMethod.POST,"/funds/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/users").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/funds/{id}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/funds/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/transactions").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/transactions/{id}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/transactions/register").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/transactions/{id}").permitAll()
                         .anyRequest().authenticated()
                 ).sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
@@ -60,11 +64,11 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration configuration
     ) throws Exception {
-        return  configuration.getAuthenticationManager();
+        return configuration.getAuthenticationManager();
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource(){
+    CorsConfigurationSource corsConfigurationSource() {
         var configuration = new CorsConfiguration();
         configuration.addAllowedOrigin("*");
         configuration.addAllowedMethod("*");

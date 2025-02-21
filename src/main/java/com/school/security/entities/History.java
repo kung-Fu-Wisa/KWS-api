@@ -20,12 +20,15 @@ public class History {
     @Column(name = "id_history", nullable = false)
     private Long idHistory;
 
-    @ManyToOne
-    @JoinColumn(name = "id_transaction", nullable = false)
-    private Transaction transaction;
 
-    @Column(name = "amount", nullable = false, precision = 15, scale = 2)
+    @Column(name = "id_transaction", nullable = false)
+    private Long transaction;
+
+    @Column(name = "amount_transaction", nullable = false, precision = 15, scale = 2)
     private BigDecimal amount;
+
+    @Column(name = "total_amount", nullable = false, precision = 15, scale = 2)
+    private BigDecimal totalAmount;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

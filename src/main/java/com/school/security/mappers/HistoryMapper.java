@@ -6,12 +6,13 @@ import com.school.security.entities.History;
 import org.springframework.stereotype.Component;
 
 @Component
-public class HistoryMapper implements Mapper <HistoryReqDto, History, HistoryResDto>{
+public class HistoryMapper implements Mapper<HistoryReqDto, History, HistoryResDto> {
     @Override
     public History fromDto(HistoryReqDto d) {
         History history = new History();
         history.setTransaction(d.transaction());
         history.setCreatedAt(d.createdAt());
+        history.setTotalAmount(d.totalAmount());
         history.setAmount(d.amount());
         return history;
     }
@@ -20,8 +21,9 @@ public class HistoryMapper implements Mapper <HistoryReqDto, History, HistoryRes
     public HistoryResDto toDto(History entity) {
         return new HistoryResDto(
                 entity.getIdHistory(),
-                entity.getTransaction().getIdTransaction(),
+                entity.getTransaction(),
                 entity.getAmount(),
+                entity.getTotalAmount(),
                 entity.getCreatedAt()
         );
     }

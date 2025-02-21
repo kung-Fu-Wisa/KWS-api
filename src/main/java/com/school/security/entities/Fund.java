@@ -1,8 +1,12 @@
 package com.school.security.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -15,8 +19,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Fund {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_fund", nullable = false)
+    @Column(name = "id_fund", nullable = false, unique = true)
     private Long idFund;
 
     @Column(name = "name", nullable = false)
