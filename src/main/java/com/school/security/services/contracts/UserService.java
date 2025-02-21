@@ -7,8 +7,6 @@ import com.school.security.enums.RoleType;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import java.util.Optional;
-
 public interface UserService extends Service<UserReqDto, UserResDto, Long>{
 
     UserResDto attachRole(String email, RoleType name);

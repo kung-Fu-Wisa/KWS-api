@@ -1,13 +1,12 @@
 package com.school.security.dtos.requests;
 
+import com.school.security.entities.User;
 import com.school.security.enums.TransactionType;
-
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public record TransactionReqDto(
-        Long idTransaction,
-        Long userId ,
-        Timestamp dateOfTransaction ,
+        User user ,
+        LocalDateTime dateOfTransaction ,
         TransactionType transactionType ,
         String references ,
         Boolean status

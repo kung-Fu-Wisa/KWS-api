@@ -4,6 +4,7 @@ import com.school.security.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transactions")
@@ -23,13 +24,13 @@ public class Transaction {
     private User user;
 
     @Column(name = "date_of_transaction", nullable = false)
-    private Timestamp dateOfTransaction;
+    private LocalDateTime dateOfTransaction;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "transaction_type",nullable = false)
     private TransactionType transactionType;
 
-    @Column(name="references",nullable = false)
+    @Column(name="reference",nullable = false)
     private String references ;
 
     @Column(name = "status_transaction", nullable = false)
